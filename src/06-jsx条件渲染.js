@@ -1,29 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-const list = [
-  { id: 1, name: "奥迪" },
-  { id: 2, name: "宝马" },
-  { id: 3, name: "奔驰" },
-];
-
-// const list1 = ["a", "b", "c"];
-
-// const arr = list.map((item) => {
-//   return <li></li> <li>{item.name}</li>;
-// });
-const element = (
-  <div>
-    <h1>列表渲染</h1>
-    <ul>
-      {list.map((item, index) => (
-        <li key={index}>
-          <p>{item.name}</p>
-          <p>{item.id}</p>
-        </li>
-      ))}
-    </ul>
-  </div>
-);
+const loading = true;
+// function render() {
+//   if (loading) {
+//     return <div>数据加载中...</div>;
+//   } else {
+//     return <div> 数据加载完成</div>;
+//   }
+// }
+const element = <div>{loading && <div>数据加载中</div>}</div>;
 
 //参数1：渲染的react元素
 //参数2 需要渲染到那个容器中
