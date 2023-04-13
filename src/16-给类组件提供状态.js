@@ -1,32 +1,26 @@
+
+
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
 class App extends Component {
-  // constructor(){
+  constructor(){
 
-  //   super()
-  //   this.state={
-  //     msg:'hello',
-  //     count:0
+    super()
+    this.state={
+      msg:'hello',
+      count:0
 
-  //   }
-  state = {
-    msg: "hello",
-    count: 0,
-    // }
-  };
+    }
+  }
   render() {
     return (
       <div>
         <h1>跟组件</h1>
         <div>{this.state.msg}</div>
         <div>{this.state.count}</div>
-        <button onClick={this.handeleClick}>+1</button>
       </div>
     );
-  }
-  handeleClick() {
-    console.log("点击事件");
   }
 }
 // const element = <App></App>;
