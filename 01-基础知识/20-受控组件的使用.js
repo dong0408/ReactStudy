@@ -2,25 +2,27 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
 class App extends Component {
-  txtRef = React.createRef();
   state = {
-    username: "",
-    desc: "",
-    cite: 3,
-    agree: true,
+    msg: "hello world",
   };
   render() {
     return (
       <div>
         <h1>受控组件</h1>
-        <input type="text"  ref={this.txtRef} />
-        <button onClick={this.clickFn}>获取值</button>
+        <input
+          type="text"
+          value={this.state.msg}
+          onChange={this.handleChange}
+        />
       </div>
     );
   }
 
-  clickFn = () => {
-    console.log(this.txtRef.current.value);
+  handleChange = (e) => {
+    console.log("123");
+    this.setState({
+      msg: e.target.value,
+    });
   };
 }
 // const element = <App></App>;
