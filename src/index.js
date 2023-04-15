@@ -1,29 +1,40 @@
-import React, { Component } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 
-class App extends Component {
-  txtRef = React.createRef();
+import Demo from "./components/Demo";
+// import Hello from "./components/Hello";
+import "./index.css";
+import Hello from "./components/Hello";
+
+class App extends React.Component {
   state = {
-    username: "",
-    desc: "",
-    cite: 3,
-    agree: true,
+    money: 100,
   };
   render() {
     return (
       <div>
-        <h1>受控组件</h1>
-        <input type="text"  ref={this.txtRef} />
-        <button onClick={this.clickFn}>获取值</button>
+        <h1> App组件</h1>
+        <button onClick={this.buy}>按钮</button>
+        <Demo
+          car="宝马"
+          money={this.state.money}
+          check={true}
+          fn={() => {
+            console.log("fn函数");
+          }}
+          list={[1, 2, 3]}
+          user={{ name: "ss", age: 18 }}
+        ></Demo>
+        <Hello money={this.state.money}></Hello>
       </div>
     );
   }
-
-  clickFn = () => {
-    console.log(this.txtRef.current.value);
+  buy = () => {
+    this.setState({
+      money: this.state.money - 1,
+    });
   };
 }
-// const element = <App></App>;
-//参数1：渲染的react元素
-//参数2 需要渲染到那个容器中
-ReactDOM.render(<App></App>, document.getElementById("root"));
+
+// 渲染组件
+ReactDOM.render(<App />, document.getElementById("root"));
