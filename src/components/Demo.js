@@ -2,7 +2,8 @@ const Demo = (props) => {
   console.log(props, "demo");
   const buyClothes = () => {
     console.log("买衣服");
-  };  return (
+  };
+  return (
     <div>
       函数组件
       <p>{props.car}</p>

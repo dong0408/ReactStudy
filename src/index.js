@@ -1,40 +1,40 @@
-import React from "react";
+import { Component } from "react";
 import ReactDOM from "react-dom";
-
-import Demo from "./components/Demo";
-// import Hello from "./components/Hello";
-import "./index.css";
-import Hello from "./components/Hello";
-
-class App extends React.Component {
+import Child from "./Child";
+class App extends Component {
   state = {
-    money: 100,
+    name: "",
+    sonName: "",
   };
   render() {
     return (
       <div>
-        <h1> App组件</h1>
-        <button onClick={this.buy}>按钮</button>
-        <Demo
-          car="宝马"
-          money={this.state.money}
-          check={true}
-          fn={() => {
-            console.log("fn函数");
-          }}
-          list={[1, 2, 3]}
-          user={{ name: "ss", age: 18 }}
-        ></Demo>
-        <Hello money={this.state.money}></Hello>
+        class组件
+        <div>
+          配偶:
+          <input
+            type="text"
+            placeholder="请输入名字"
+            value={this.state.name}
+            onChange={this.handleChange}
+          />
+        </div>
+        <Child name={this.state.name} changeName={this.changeName}></Child>
+        <div>文字{this.state.sonName}</div>
       </div>
     );
   }
-  buy = () => {
+  handleChange = (e) => {
     this.setState({
-      money: this.state.money - 1,
+      name: e.target.value,
+    });
+  };
+  changeName = (name) => {
+    console.log("接受", name);
+    this.setState({
+      sonName: name,
     });
   };
 }
 
-// 渲染组件
 ReactDOM.render(<App />, document.getElementById("root"));
