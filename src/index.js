@@ -1,38 +1,104 @@
 import { Component } from "react";
 import ReactDOM from "react-dom";
-import Child from "./Child";
+import "./styles/base.css";
+import "./styles/index.css";
+import TodoHeader from "./components/TodoHeader";
+import TodoMain from "./components/TodoMain";
+import TodoFooter from "./components/TodoFooter";
 class App extends Component {
   state = {
-    name: "",
-    sonName: "",
+    list: [
+      { id: 1, name: "吃饭", done: false },
+      { id: 2, name: "睡觉", done: false },
+      { id: 3, name: "打游戏", done: true },
+    ],
+    type: "all",
   };
   render() {
+    const { list, type } = this.state;
     return (
       <div>
-        class组件
-        <div>
-          配偶:
-          <input
-            type="text"
-            placeholder="请输入名字"
-            value={this.state.name}
-            onChange={this.handleChange}
-          />
-        </div>
-        <Child name={this.state.name} changeName={this.changeName}></Child>
-        <div>文字{this.state.sonName}</div>
+        <section className="todoapp">
+          <TodoHeader addTodo={this.addTodo}></TodoHeader>
+          <TodoMain
+            list={list}
+            deleteToById={this.deleteToById}
+            updateById={this.updateById}
+            editTodo={this.editTodo}
+            checkAll={this.checkAll}
+            type={type}
+          ></TodoMain>
+          <TodoFooter
+            list={list}
+            clearTodo={this.clearTodo}
+            type={type}
+            changeType={this.changeType}
+          ></TodoFooter>
+        </section>
       </div>
     );
   }
-  handleChange = (e) => {
+  deleteToById = (id) => {
+    this.setState({ list: this.state.list.filter((item) => item.id !== id) });
+  };
+  updateById = (id) => {
     this.setState({
-      name: e.target.value,
+      list: this.state.list.map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            done: !item.done,
+          };
+        } else {
+          return item;
+        }
+      }),
     });
   };
-  changeName = (name) => {
-    console.log("接受", name);
+  addTodo = (name) => {
+    console.log(name);
+
     this.setState({
-      sonName: name,
+      list: [
+        {
+          id: Date.now(),
+          name,
+          done: false,
+        },
+        ...this.state.list,
+      ],
+    });
+  };
+  editTodo = (id, name) => {
+    this.setState({
+      list: this.state.list.map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            name,
+          };
+        } else {
+          return item;
+        }
+      }),
+    });
+  };
+  clearTodo = () => {
+    this.setState({
+      list: this.state.list.filter((item) => !item.done),
+    });
+  };
+  changeType = (type) => {
+    this.setState({ type });
+  };
+  checkAll = (check) => {
+    this.setState({
+      list: this.state.list.map((item) => {
+        return {
+          ...item,
+          done: check,
+        };
+      }),
     });
   };
 }
