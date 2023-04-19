@@ -1,12 +1,20 @@
 import React, { Component } from "react";
 // import ReactDOM from "react-dom";
 import { createRoot } from "react-dom/client";
+import "./styles/base.css";
+import "./styles/index.css";
+import Dialog from "./Dialog";
+
 class App extends Component {
+  state = {
+    color: "red",
+  };
   render() {
     return (
       <div>
-        1q2F
-        <button onClick={this.handleClick}>+!</button>
+        <Dialog title={<h4>温馨提示</h4>}>
+          <input type="text" />
+        </Dialog>
       </div>
     );
   }

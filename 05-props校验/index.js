@@ -1,12 +1,21 @@
 import React, { Component } from "react";
 // import ReactDOM from "react-dom";
 import { createRoot } from "react-dom/client";
+import "./styles/base.css";
+import "./styles/index.css";
+import MySon from "./MySon";
+
 class App extends Component {
+  state = {
+    car: {
+      brand:' 10ewdew0',
+      price: 100,
+    },
+  };
   render() {
     return (
       <div>
-        1q2F
-        <button onClick={this.handleClick}>+!</button>
+        <MySon money="100" list={[]} car={this.state.car}></MySon>
       </div>
     );
   }
